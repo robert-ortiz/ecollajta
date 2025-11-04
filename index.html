@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoLlajta: Plataforma educativa para la gestión sostenible de residuos y compostaje urbano.">
+    <title>EcoLlajta - Compostaje y Gestión de Residuos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">ECOLLAJTA</div>
+        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+        <nav class="menu">
+            <a href="#problema">PROBLEMA</a>
+            <a href="#soluciones">SOLUCIONES</a>
+            <a href="#educacion">EDUCACIÓN</a>
+            <a href="#galeria">GALERÍA</a>
+            <a href="#contacto">CONTACTO</a>
+        </nav>
+    </header>
+
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: url('img/reciclaje1.jpg');">
+            <div class="slide-content">
+                <h1>Gestión sostenible de residuos</h1>
+                <p>Un compromiso ambiental y ciudadano por Cochabamba.</p>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('img/compostaje.jpg');">
+            <div class="slide-content">
+                <h1>Transforma residuos en vida</h1>
+                <p>El compostaje urbano reduce la basura y mejora el suelo.</p>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('img/ciudad-verde.jpg');">
+            <div class="slide-content">
+                <h1>Cochabamba más verde</h1>
+                <p>La tecnología y la educación pueden cambiar nuestra ciudad.</p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="problema" class="contenedor-generos">
+            <h2>PROBLEMA AMBIENTAL</h2>
+            <div class="generos-carrusel">
+                <button class="genero-prev">&#10094;</button>
+
+                <div class="genero-slide active">
+                    <div class="genero-texto">
+                        <h3>K’ARA K’ARA EN CRISIS</h3>
+                        <p>El botadero de K’ara K’ara ha llegado a su límite. La acumulación de residuos sin tratamiento amenaza la salud pública y el medio ambiente.</p>
+                    </div>
+                    <div class="genero-imagen">
+                        <img src="img/karakara.jpg" alt="Botadero de K’ara K’ara">
+                    </div>
+                </div>
+
+                <div class="genero-slide">
+                    <div class="genero-texto">
+                        <h3>FALTA DE CULTURA AMBIENTAL</h3>
+                        <p>La ausencia de educación ambiental y separación en origen agrava la crisis de residuos en Cochabamba.</p>
+                    </div>
+                    <div class="genero-imagen">
+                        <img src="img/educacion-ambiental.jpg" alt="Educación ambiental">
+                    </div>
+                </div>
+
+                <div class="genero-slide">
+                    <div class="genero-texto">
+                        <h3>RESIDUOS ORGÁNICOS DESAPROVECHADOS</h3>
+                        <p>Más del 50% de la basura doméstica es orgánica y podría convertirse en compost útil para la agricultura urbana.</p>
+                    </div>
+                    <div class="genero-imagen">
+                        <img src="img/residuos-organicos.jpg" alt="Residuos orgánicos">
+                    </div>
+                </div>
+
+                <button class="genero-next">&#10095;</button>
+            </div>
+        </section>
+
+        <section id="soluciones" class="contenedor-horizontal">
+            <div class="imagen">
+                <img src="img/compost-bin.jpg" alt="Compostaje en casa">
+            </div>
+            <div class="texto">
+                <h1>SOLUCIONES SOSTENIBLES</h1>
+                <p>El compostaje urbano y la gestión inteligente de residuos son claves para reducir el impacto ambiental. Promovemos sistemas digitales que incentiven la separación, el reciclaje y el aprovechamiento de desechos.</p>
+            </div>
+        </section>
+
+        <section id="educacion" class="contenedor-horizontal">
+            <div class="texto">
+                <h2>EDUCACIÓN Y PARTICIPACIÓN</h2>
+                <p>Educar a la ciudadanía es esencial. A través de talleres, aplicaciones y comunidades digitales, buscamos formar una cultura ambiental activa y solidaria.</p>
+                <button>PARTICIPA</button>
+            </div>
+            <div class="imagen">
+                <img src="img/educacion-verde.jpg" alt="Educación ambiental en comunidad">
+            </div>
+        </section>
+
+        <section id="galeria" class="contenedor-horizontal">
+            <div class="texto">
+                <h2>GALERÍA</h2>
+                <div class="imagen">
+                    <img src="img/reciclaje2.jpg" alt="Reciclaje comunitario">
+                    <img src="img/compost1.jpg" alt="Compost orgánico">
+                    <img src="img/ciudad-verde2.jpg" alt="Áreas verdes urbanas">
+                    <img src="img/recoleccion.jpg" alt="Recolección de residuos">
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contenedor-horizontal">
+            <div class="texto">
+                <h2>CONTÁCTANOS</h2>
+                <p>¿Tienes ideas o proyectos ambientales? Escríbenos y forma parte del cambio.</p>
+                <button>ESCRÍBENOS</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 EcoLlajta. Proyecto educativo y ambiental para una ciudad sostenible.
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
