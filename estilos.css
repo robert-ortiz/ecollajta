@@ -1,3 +1,4 @@
+/* ------------------ BASE ------------------ */
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +14,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
+/* ------------------ HEADER ------------------ */
 header {
     display: flex;
     justify-content: space-between;
@@ -57,7 +58,7 @@ nav.menu a:hover {
     cursor: pointer;
 }
 
-/* Hero Slider */
+/* ------------------ HERO SLIDER ------------------ */
 .hero-slider {
     position: relative;
     height: 100vh;
@@ -110,12 +111,17 @@ nav.menu a:hover {
     font-size: 1.3rem;
 }
 
-/* Secciones */
+/* ------------------ SECCIONES GENERALES ------------------ */
 .contenedor-generos {
     background-color: #e8f5e9;
     padding: 4rem 2rem;
     text-align: center;
     color: #2e7d32;
+}
+
+.contenedor-generos h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .generos-carrusel {
@@ -142,9 +148,23 @@ nav.menu a:hover {
     display: flex;
 }
 
+.genero-texto {
+    flex: 1;
+    padding: 1rem;
+    text-align: left;
+}
+
 .genero-texto h3 {
     font-size: 1.8rem;
     color: #1b5e20;
+    margin-bottom: 1rem;
+}
+
+.genero-imagen img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .genero-prev,
@@ -156,7 +176,7 @@ nav.menu a:hover {
     cursor: pointer;
 }
 
-/* Secciones horizontales */
+/* ------------------ SECCIONES HORIZONTALES ------------------ */
 .contenedor-horizontal {
     display: flex;
     align-items: center;
@@ -177,9 +197,25 @@ nav.menu a:hover {
 
 .contenedor-horizontal .texto h1,
 .contenedor-horizontal .texto h2 {
+    align-items: center;
     color: #1b5e20;
+    margin-bottom: 1rem;
 }
 
+.contenedor-horizontal .texto p {
+    align-items: center;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.contenedor-horizontal .texto {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
 .contenedor-horizontal .texto button {
     background-color: #2e7d32;
     color: white;
@@ -188,44 +224,102 @@ nav.menu a:hover {
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
 }
 
 .contenedor-horizontal .texto button:hover {
+    align-items: center;
     background-color: #1b5e20;
 }
 
-/* Footer */
+/* ------------------ MAPA SIMULADO ------------------ */
+.mapa-simulacion {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 15px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ------------------ MONITOREO CIUDADANO ------------------ */
+.panel-monitoreo {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.indicador {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.indicador:hover {
+    transform: translateY(-5px);
+}
+
+.indicador h3 {
+    color: #2e7d32;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.indicador p {
+    font-weight: bold;
+    color: #1b5e20;
+}
+
+/* ------------------ INCENTIVOS ------------------ */
+#incentivos ul {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+#incentivos ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #2e7d32;
+}
+
+#incentivos .texto p:last-child {
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* ------------------ ODS ------------------ */
+.ods-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.ods-item {
+    text-align: center;
+    width: 200px;
+}
+
+.ods-item img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 0.5rem;
+}
+
+.ods-item p {
+    color: #1b5e20;
+    font-weight: 500;
+}
+
+/* ------------------ FOOTER ------------------ */
 footer {
     background-color: #2e7d32;
     color: white;
     text-align: center;
     padding: 1rem 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .contenedor-horizontal {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav.menu {
-        display: none;
-        flex-direction: column;
-        background-color: #1b5e20;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        padding: 1rem 0;
-        text-align: center;
-    }
-
-    nav.menu.show {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
 }
