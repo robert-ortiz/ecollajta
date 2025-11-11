@@ -3,187 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EcoLlajta: Plataforma educativa y digital para el compostaje urbano y la gestión sostenible de residuos en Cochabamba.">
-    <title>EcoLlajta - Compostaje y Gestión de Residuos</title>
-    <link rel="stylesheet" href="estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sistema de Gestión Inteligente de Residuos | Cochabamba</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header>
-        <div class="logo">ECOLLAJTA</div>
-        <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
-        <nav class="menu">
-            <a href="#problema">PROBLEMA</a>
-            <a href="#soluciones">SOLUCIONES</a>
-            <a href="#mapa">MAPA</a>
-            <a href="#monitoreo">MONITOREO</a>
-            <a href="#incentivos">INCENTIVOS</a>
-            <a href="#educacion">EDUCACIÓN</a>
-            <a href="#ods">ODS</a>
-            <a href="#contacto">CONTACTO</a>
-        </nav>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-gray-800 flex items-center">
+                <i data-lucide="leaf" class="w-6 h-6 text-green-500 mr-2"></i>
+                EcoCochabamba
+            </h1>
+            <button id="user-menu-button" class="flex items-center space-x-2 p-2 rounded-full bg-green-50 transition duration-150 hover:bg-green-100">
+                <span class="text-sm font-medium text-gray-700 hidden sm:inline">Usuario Cocha</span>
+                <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-sm">UC</div>
+            </button>
+        </div>
     </header>
 
-    <section class="hero-slider">
-        <div class="slide active" style="background-image: url('img/reciclaje1.jpg');">
-            <div class="slide-content">
-                <h1>Gestión sostenible de residuos</h1>
-                <p>Un compromiso ambiental y ciudadano por Cochabamba.</p>
-            </div>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 container-content">
+        <div class="flex border-b border-gray-200 mb-8 overflow-x-auto">
+            <button class="tab-button active px-4 py-3 text-sm text-gray-500 hover:text-green-600 transition duration-150" data-tab="dashboard">
+                <i data-lucide="layout-dashboard" class="w-4 h-4 inline mr-1"></i> Dashboard
+            </button>
+            <button class="tab-button px-4 py-3 text-sm text-gray-500 hover:text-green-600 transition duration-150" data-tab="education">
+                <i data-lucide="graduation-cap" class="w-4 h-4 inline mr-1"></i> Módulo Educativo
+            </button>
+            <button class="tab-button px-4 py-3 text-sm text-gray-500 hover:text-green-600 transition duration-150" data-tab="incentives">
+                <i data-lucide="gem" class="w-4 h-4 inline mr-1"></i> Incentivos
+            </button>
+            <button class="tab-button px-4 py-3 text-sm text-gray-500 hover:text-green-600 transition duration-150" data-tab="monitoring">
+                <i data-lucide="trending-up" class="w-4 h-4 inline mr-1"></i> Monitoreo Público
+            </button>
         </div>
-        <div class="slide" style="background-image: url('img/compostaje.jpg');">
-            <div class="slide-content">
-                <h1>Transforma residuos en vida</h1>
-                <p>El compostaje urbano reduce la basura y mejora el suelo.</p>
+
+        <div id="tab-content">
+            
+            <div id="dashboard" class="tab-page">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Tu Impacto Ambiental</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    
+                    <div class="card bg-white p-6 rounded-xl border border-green-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-500">Puntos Acumulados</p>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-500"></i>
+                        </div>
+                        <p class="text-4xl font-extrabold text-gray-900 mt-2">1,580</p>
+                        <p class="text-xs text-gray-400 mt-1">Gana más con cada separación correcta.</p>
+                    </div>
+
+                    <div class="card bg-white p-6 rounded-xl border border-blue-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-500">Orgánicos Compostados (Kg)</p>
+                            <i data-lucide="recycle" class="w-5 h-5 text-blue-500"></i>
+                        </div>
+                        <p class="text-4xl font-extrabold text-gray-900 mt-2">45.7</p>
+                        <p class="text-xs text-gray-400 mt-1">Residuos desviados de K’ara K’ara.</p>
+                    </div>
+
+                    <div class="card bg-white p-6 rounded-xl border border-red-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-500">Ahorro de CO2 (Kg)</p>
+                            <i data-lucide="cloud-off" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                        <p class="text-4xl font-extrabold text-gray-900 mt-2">12.3</p>
+                        <p class="text-xs text-gray-400 mt-1">Gracias a la reducción de metano (CH4).</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-100">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Puntos de Recolección y Compostaje</h3>
+                    <div class="bg-gray-200 h-48 rounded-lg flex items-center justify-center text-gray-500 italic mb-4">
+                        [Simulación de Mapa Interactivo con Geolocalización]
+                    </div>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.01]" onclick="showMessage('Simulación de carga de mapa...')">
+                        <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i> Encontrar mi Punto Más Cercano
+                    </button>
+                </div>
             </div>
+
+            <div id="education" class="tab-page hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Módulo Educativo: Aprende a Separar</h2>
+                <div class="bg-white p-8 rounded-xl border border-gray-100 space-y-6">
+                    <p class="text-lg text-gray-700">La clave para una Cochabamba sostenible es la separación de residuos en origen. Aquí te enseñamos cómo hacerlo correctamente y qué beneficios trae.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="card p-4 rounded-lg bg-green-50 border border-green-200">
+                            <h4 class="font-semibold text-green-700 flex items-center mb-2"><i data-lucide="apple" class="w-5 h-5 mr-2"></i> Orgánicos (Verde)</h4>
+                            <p class="text-sm text-gray-600">Restos de comida, cáscaras de frutas, restos de café. ¡Perfectos para compostaje!</p>
+                        </div>
+                        <div class="card p-4 rounded-lg bg-blue-50 border border-blue-200">
+                            <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="box" class="w-5 h-5 mr-2"></i> Reciclables (Azul)</h4>
+                            <p class="text-sm text-gray-600">Papel, cartón, plástico (PET), vidrio y metales limpios. Evita el uso de plásticos de un solo uso.</p>
+                        </div>
+                        <div class="card p-4 rounded-lg bg-gray-50 border border-gray-200">
+                            <h4 class="font-semibold text-gray-700 flex items-center mb-2"><i data-lucide="trash-2" class="w-5 h-5 mr-2"></i> Descarte (Gris)</h4>
+                            <p class="text-sm text-gray-600">Artículos no reciclables ni orgánicos, como pañales y colillas de cigarro.</p>
+                        </div>
+                    </div>
+
+                    <button class="mt-4 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300" onclick="showMessage('Simulación de inicio de curso multimedia.')">
+                        <i data-lucide="book-open" class="w-4 h-4 inline mr-1"></i> Ver Curso de Compostaje Básico
+                    </button>
+                </div>
+            </div>
+
+            <div id="incentives" class="tab-page hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Plan de Recompensas y Gamificación</h2>
+                <div class="bg-white p-8 rounded-xl border border-gray-100">
+                    <div class="mb-6 p-4 rounded-lg bg-yellow-50 border border-yellow-200 flex items-center justify-between">
+                        <p class="text-xl font-bold text-yellow-700">Tu Nivel Actual: <span class="text-yellow-800">Guerrero Ambiental I</span></p>
+                        <i data-lucide="trophy" class="w-8 h-8 text-yellow-600"></i>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Catálogo de Recompensas Simbólicas</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 border rounded-lg flex items-center justify-between">
+                            <div>
+                                <p class="font-semibold">Bolsa de Abono Orgánico</p>
+                                <p class="text-sm text-gray-500">Canje por tu próximo proyecto de jardín.</p>
+                            </div>
+                            <span class="text-lg font-bold text-green-600">2,000 Pts</span>
+                            <button class="ml-4 bg-green-500 text-white py-1 px-3 rounded text-sm hover:bg-green-600" onclick="showMessage('Canje simulado. ¡Felicidades!')">Canjear</button>
+                        </div>
+                        <div class="p-4 border rounded-lg flex items-center justify-between">
+                            <div>
+                                <p class="font-semibold">Reconocimiento Digital Municipal</p>
+                                <p class="text-sm text-gray-500">Mención en redes sociales como Ciudadano Modelo.</p>
+                            </div>
+                            <span class="text-lg font-bold text-green-600">500 Pts</span>
+                            <button class="ml-4 bg-gray-400 text-white py-1 px-3 rounded text-sm cursor-not-allowed">Canjeado</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="monitoring" class="tab-page hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Monitoreo Público y Trazabilidad</h2>
+                <div class="bg-white p-8 rounded-xl border border-gray-100">
+                    <p class="text-lg text-gray-700 mb-6">La transparencia es clave. Consulta aquí los reportes automáticos y públicos sobre la gestión de residuos en Cochabamba, incluyendo volúmenes procesados y calidad del compost.</p>
+
+                    <div class="space-y-4">
+                        <div class="p-4 border rounded-lg bg-blue-50">
+                            <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Reporte Trimestral Q3 - 2024</h4>
+                            <p class="text-sm text-gray-600">Volumen total de orgánicos procesados: 120 Toneladas. Eficiencia del sistema: 85%.</p>
+                            <button class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium" onclick="showMessage('Simulación de descarga de PDF.')">
+                                <i data-lucide="download" class="w-4 h-4 inline mr-1"></i> Descargar Informe Completo
+                            </button>
+                        </div>
+                        <div class="p-4 border rounded-lg bg-blue-50">
+                            <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Estado de la Planta de Compostaje Central</h4>
+                            <p class="text-sm text-gray-600">Gráfico de calidad del compost (Temperatura, Humedad) en tiempo real (Simulado).</p>
+                            <button class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium" onclick="showMessage('Simulación de visualización de datos en tiempo real.')">
+                                <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i> Ver Panel de Datos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        <div class="slide" style="background-image: url('img/ciudad-verde.jpg');">
-            <div class="slide-content">
-                <h1>Cochabamba más verde</h1>
-                <p>La tecnología y la educación pueden cambiar nuestra ciudad.</p>
-            </div>
-        </div>
-    </section>
-
-    <main>
-        <section id="problema" class="contenedor-generos">
-            <h2>PROBLEMA AMBIENTAL</h2>
-            <div class="generos-carrusel">
-                <button class="genero-prev">&#10094;</button>
-
-                <div class="genero-slide active">
-                    <div class="genero-texto">
-                        <h3>K’ARA K’ARA EN CRISIS</h3>
-                        <p>El botadero de K’ara K’ara ha llegado a su límite. La acumulación de residuos sin tratamiento amenaza la salud pública y el medio ambiente.</p>
-                    </div>
-                    <div class="genero-imagen">
-                        <img src="img/karakara.jpg" alt="Botadero de K’ara K’ara">
-                    </div>
-                </div>
-
-                <div class="genero-slide">
-                    <div class="genero-texto">
-                        <h3>FALTA DE CULTURA AMBIENTAL</h3>
-                        <p>La ausencia de educación ambiental y separación en origen agrava la crisis de residuos en Cochabamba.</p>
-                    </div>
-                    <div class="genero-imagen">
-                        <img src="img/educacion-ambiental.jpg" alt="Educación ambiental">
-                    </div>
-                </div>
-
-                <div class="genero-slide">
-                    <div class="genero-texto">
-                        <h3>RESIDUOS ORGÁNICOS DESAPROVECHADOS</h3>
-                        <p>Más del 50% de la basura doméstica es orgánica y podría convertirse en compost útil para la agricultura urbana.</p>
-                    </div>
-                    <div class="genero-imagen">
-                        <img src="img/residuos-organicos.jpg" alt="Residuos orgánicos">
-                    </div>
-                </div>
-
-                <button class="genero-next">&#10095;</button>
-            </div>
-        </section>
-
-        <section id="soluciones" class="contenedor-horizontal">
-            <div class="imagen">
-                <img src="img/compost-bin.jpg" alt="Compostaje en casa">
-            </div>
-            <div class="texto">
-                <h1>SOLUCIONES SOSTENIBLES</h1>
-                <p>El compostaje urbano y la gestión inteligente de residuos son claves para reducir el impacto ambiental. Promovemos sistemas digitales que incentiven la separación, el reciclaje y el aprovechamiento de desechos.</p>
-            </div>
-        </section>
-
-        <!-- NUEVA SECCIÓN: MAPA INTERACTIVO -->
-        <section id="mapa" class="contenedor-horizontal">
-            <div class="texto">
-                <h2>PUNTOS DE RECOLECCIÓN Y COMPOSTAJE</h2>
-                <p>Simulación de mapa interactivo que muestra puntos de compostaje urbano y recolección de residuos orgánicos en Cochabamba.</p>
-                <img src="img/mapa-compostaje.jpg" alt="Mapa de puntos de compostaje en Cochabamba" class="mapa-simulacion">
-            </div>
-        </section>
-
-        <!-- NUEVA SECCIÓN: MONITOREO CIUDADANO -->
-        <section id="monitoreo" class="contenedor-generos">
-            <h2>MONITOREO CIUDADANO</h2>
-            <p>Simulación de herramienta digital que genera reportes sobre gestión de residuos.</p>
-            <div class="panel-monitoreo">
-                <div class="indicador">
-                    <h3>Residuos Compostados</h3>
-                    <p>▲ +32% este mes</p>
-                </div>
-                <div class="indicador">
-                    <h3>Participación Ciudadana</h3>
-                    <p>850 usuarios activos</p>
-                </div>
-                <div class="indicador">
-                    <h3>CO₂ Reducido</h3>
-                    <p>≈ 2.4 toneladas</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NUEVA SECCIÓN: INCENTIVOS -->
-        <section id="incentivos" class="contenedor-horizontal">
-            <div class="texto">
-                <h2>INCENTIVOS ECOLÓGICOS</h2>
-                <p>EcoLlajta propone un sistema simbólico de puntos y recompensas digitales. Cada acción verde suma a tu perfil ciudadano:</p>
-                <ul>
-                    <li>♻️ Separar residuos = +10 puntos</li>
-                    <li>🌱 Compostar en casa = +20 puntos</li>
-                    <li>📸 Reportar actividad verde = +15 puntos</li>
-                </ul>
-                <p>¡Acumula puntos y obtén reconocimientos virtuales como “EcoAmigo”, “Guardian del Suelo” o “Embajador Verde”!</p>
-            </div>
-            <div class="imagen">
-                <img src="img/incentivos.jpg" alt="Sistema de incentivos ecológicos">
-            </div>
-        </section>
-
-        <section id="educacion" class="contenedor-horizontal">
-            <div class="texto">
-                <h2>EDUCACIÓN Y PARTICIPACIÓN</h2>
-                <p>Educar a la ciudadanía es esencial. A través de talleres, aplicaciones y comunidades digitales, buscamos formar una cultura ambiental activa y solidaria.</p>
-                <button>PARTICIPA</button>
-            </div>
-            <div class="imagen">
-                <img src="img/educacion-verde.jpg" alt="Educación ambiental en comunidad">
-            </div>
-        </section>
-
-        <!-- NUEVA SECCIÓN: ODS -->
-        <section id="ods" class="contenedor-generos">
-            <h2>COMPROMISO CON LOS ODS</h2>
-            <p>EcoLlajta se alinea con los Objetivos de Desarrollo Sostenible:</p>
-            <div class="ods-icons">
-                <div class="ods-item">
-                    <img src="img/ods11.png" alt="ODS 11">
-                    <p>ODS 11: Ciudades y comunidades sostenibles</p>
-                </div>
-                <div class="ods-item">
-                    <img src="img/ods12.png" alt="ODS 12">
-                    <p>ODS 12: Producción y consumo responsables</p>
-                </div>
-                <div class="ods-item">
-                    <img src="img/ods13.png" alt="ODS 13">
-                    <p>ODS 13: Acción por el clima</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contacto" class="contenedor-horizontal">
-            <div class="texto">
-                <h2>CONTÁCTANOS</h2>
-                <p>¿Tienes ideas o proyectos ambientales? Escríbenos y forma parte del cambio.</p>
-                <button>ESCRÍBENOS</button>
-            </div>
-        </section>
     </main>
 
-    <footer>
-        © 2025 EcoLlajta. Proyecto educativo y ambiental para una Cochabamba sostenible.
-    </footer>
+    <div id="message-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50 transition-opacity duration-300">
+        <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-95 opacity-0">
+            <div class="flex items-center space-x-3 mb-4">
+                <i data-lucide="info" class="w-6 h-6 text-green-600"></i>
+                <h3 class="text-lg font-semibold text-gray-800">Notificación del Sistema</h3>
+            </div>
+            <p id="modal-text" class="text-gray-600 mb-4"></p>
+            <button onclick="closeModal()" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-200">
+                Aceptar
+            </button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
