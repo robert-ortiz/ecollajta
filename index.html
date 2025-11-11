@@ -7,7 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 <body class="antialiased">
 
@@ -72,14 +77,14 @@
                         </div>
                         <p class="text-4xl font-extrabold text-gray-900 mt-2">12.3</p>
                         <p class="text-xs text-gray-400 mt-1">Gracias a la reducción de metano (CH4).</p>
+                    </p>
                     </div>
                 </div>
 
                 <div class="bg-white p-8 rounded-xl border border-gray-100">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Puntos de Recolección y Compostaje</h3>
-                    <div class="bg-gray-200 h-48 rounded-lg flex items-center justify-center text-gray-500 italic mb-4">
-                        [Simulación de Mapa Interactivo con Geolocalización]
-                    </div>
+                    <div id="mapid" class="bg-gray-200 h-96 rounded-lg mb-4">
+                        </div>
                     <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.01]" onclick="showMessage('Simulación de carga de mapa...')">
                         <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i> Encontrar mi Punto Más Cercano
                     </button>

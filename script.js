@@ -5,7 +5,29 @@ const messageModal = document.getElementById('message-modal');
 const modalContent = messageModal.querySelector('.bg-white');
 const modalText = document.getElementById('modal-text');
 
-// Función para cambiar de pestaña
+// Variables para el Mapa Leaflet
+const COCHABAMBA_COORDS = [-17.3932, -66.1568]; 
+const DEFAULT_ZOOM = 13;
+let mapInitialized = false; // Bandera para asegurar que el mapa se inicialice solo una vez
+
+// Función para inicializar el mapa
+function initMap() {
+    // 1. Inicializa el mapa y lo asigna al div 'mapid'
+    const mymap = L.map('mapid').setView(COCHABAMBA_COORDS, DEFAULT_ZOOM);
+
+    // 2. Carga los "tiles" (imágenes del mapa) de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mymap);
+
+    // 3. Añade un marcador de ejemplo (simulando un Punto de Recolección)
+    const marker = L.marker([-17.385, -66.155]).addTo(mymap); // Lat/Lng cercano al centro de Cocha
+    marker.bindPopup("<b>Punto de Recolección Central</b><br>Orgánicos y Reciclables.").openPopup();
+}
+
+
+// Función para cambiar de pestaña (Actualizada para manejar el mapa)
 function showTab(tabId) {
     // 1. Ocultar todas las páginas y remover la clase 'active' de los botones
     tabPages.forEach(page => page.classList.add('hidden'));
@@ -15,7 +37,13 @@ function showTab(tabId) {
     document.getElementById(tabId).classList.remove('hidden');
     document.querySelector(`.tab-button[data-tab="${tabId}"]`).classList.add('active');
     
-    // Re-renderizar iconos en el contenido de la pestaña (necesario para Lucide)
+    // 3. Lógica para inicializar el mapa solo una vez al mostrar el Dashboard
+    if (tabId === 'dashboard' && !mapInitialized) {
+        initMap();
+        mapInitialized = true;
+    }
+    
+    // Re-renderizar iconos en el contenido de la pestaña
     lucide.createIcons();
 }
 
@@ -26,9 +54,7 @@ tabButtons.forEach(button => {
     });
 });
 
-// Funciones para el Modal de Mensajes
-
-// Muestra el modal con un mensaje
+// Funciones para el Modal de Mensajes (expuestas globalmente)
 window.showMessage = function(message) {
     modalText.textContent = message;
     messageModal.classList.remove('hidden');
@@ -40,7 +66,6 @@ window.showMessage = function(message) {
     }, 10);
 }
 
-// Oculta el modal
 window.closeModal = function() {
     // Animación de salida
     modalContent.classList.remove('opacity-100', 'scale-100');
@@ -52,9 +77,9 @@ window.closeModal = function() {
     }, 300); // Espera que termine la transición CSS
 }
 
-// Mostrar el dashboard al cargar y crear los iconos iniciales
+// Inicialización: Mostrar el dashboard al cargar y crear los iconos iniciales
 document.addEventListener('DOMContentLoaded', () => {
-    // Inicializar iconos de Lucide (primera vez)
+    // Inicializar iconos de Lucide y luego el Dashboard (que llamará a initMap)
     lucide.createIcons();
     showTab('dashboard');
 });
