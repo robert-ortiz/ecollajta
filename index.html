@@ -51,40 +51,31 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Tu Impacto Ambiental</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    
-                    <div class="card bg-white p-6 rounded-xl border border-green-200">
-                        <div class="flex items-center justify-between">
-                            <p class="text-sm font-medium text-gray-500">Puntos Acumulados</p>
-                            <i data-lucide="star" class="w-5 h-5 text-yellow-500"></i>
-                        </div>
-                        <p class="text-4xl font-extrabold text-gray-900 mt-2">1,580</p>
-                        <p class="text-xs text-gray-400 mt-1">Gana más con cada separación correcta.</p>
-                    </div>
-
-                    <div class="card bg-white p-6 rounded-xl border border-blue-200">
-                        <div class="flex items-center justify-between">
-                            <p class="text-sm font-medium text-gray-500">Orgánicos Compostados (Kg)</p>
-                            <i data-lucide="recycle" class="w-5 h-5 text-blue-500"></i>
-                        </div>
-                        <p class="text-4xl font-extrabold text-gray-900 mt-2">45.7</p>
-                        <p class="text-xs text-gray-400 mt-1">Residuos desviados de K’ara K’ara.</p>
-                    </div>
-
-                    <div class="card bg-white p-6 rounded-xl border border-red-200">
-                        <div class="flex items-center justify-between">
-                            <p class="text-sm font-medium text-gray-500">Ahorro de CO2 (Kg)</p>
-                            <i data-lucide="cloud-off" class="w-5 h-5 text-red-500"></i>
-                        </div>
-                        <p class="text-4xl font-extrabold text-gray-900 mt-2">12.3</p>
-                        <p class="text-xs text-gray-400 mt-1">Gracias a la reducción de metano (CH4).</p>
-                    </p>
-                    </div>
+                    <div class="card bg-white p-6 rounded-xl border border-green-200"><div class="flex items-center justify-between"><p class="text-sm font-medium text-gray-500">Puntos Acumulados</p><i data-lucide="star" class="w-5 h-5 text-yellow-500"></i></div><p class="text-4xl font-extrabold text-gray-900 mt-2">1,580</p><p class="text-xs text-gray-400 mt-1">Gana más con cada separación correcta.</p></div>
+                    <div class="card bg-white p-6 rounded-xl border border-blue-200"><div class="flex items-center justify-between"><p class="text-sm font-medium text-gray-500">Orgánicos Compostados (Kg)</p><i data-lucide="recycle" class="w-5 h-5 text-blue-500"></i></div><p class="text-4xl font-extrabold text-gray-900 mt-2">45.7</p><p class="text-xs text-gray-400 mt-1">Residuos desviados de K’ara K’ara.</p></div>
+                    <div class="card bg-white p-6 rounded-xl border border-red-200"><div class="flex items-center justify-between"><p class="text-sm font-medium text-gray-500">Ahorro de CO2 (Kg)</p><i data-lucide="cloud-off" class="w-5 h-5 text-red-500"></i></div><p class="text-4xl font-extrabold text-gray-900 mt-2">12.3</p><p class="text-xs text-gray-400 mt-1">Gracias a la reducción de metano (CH4).</p></div>
                 </div>
 
                 <div class="bg-white p-8 rounded-xl border border-gray-100">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Puntos de Recolección y Compostaje</h3>
                     <div id="mapid" class="bg-gray-200 h-96 rounded-lg mb-4">
                         </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-blue-500 mr-2 fill-current"></i>
+                            <span>**Azul:** Punto Verde (Orgánicos/Reciclables)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-red-500 mr-2 fill-current"></i>
+                            <span>**Rojo:** Basurero Zonal (Solo Descarte)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-orange-500 mr-2 fill-current"></i>
+                            <span>**Naranja:** Punto Híbrido (Acopio + Descarte)</span>
+                        </div>
+                    </div>
+
                     <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.01]" onclick="showMessage('Simulación de carga de mapa...')">
                         <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i> Encontrar mi Punto Más Cercano
                     </button>
@@ -94,26 +85,93 @@
             <div id="education" class="tab-page hidden">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Módulo Educativo: Aprende a Separar</h2>
                 <div class="bg-white p-8 rounded-xl border border-gray-100 space-y-6">
-                    <p class="text-lg text-gray-700">La clave para una Cochabamba sostenible es la separación de residuos en origen. Aquí te enseñamos cómo hacerlo correctamente y qué beneficios trae.</p>
+                    <p class="text-lg text-gray-700">Selecciona una categoría para aprender las mejores prácticas de separación en origen y maximizar tu impacto ambiental en Cochabamba.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="card p-4 rounded-lg bg-green-50 border border-green-200">
-                            <h4 class="font-semibold text-green-700 flex items-center mb-2"><i data-lucide="apple" class="w-5 h-5 mr-2"></i> Orgánicos (Verde)</h4>
-                            <p class="text-sm text-gray-600">Restos de comida, cáscaras de frutas, restos de café. ¡Perfectos para compostaje!</p>
+                        <div class="card p-6 rounded-xl bg-green-50 border border-green-200 cursor-pointer hover:shadow-lg transition duration-200" onclick="showTab('edu-organics')">
+                            <h4 class="font-bold text-xl text-green-700 flex items-center mb-2"><i data-lucide="apple" class="w-6 h-6 mr-3"></i> Orgánicos</h4>
+                            <p class="text-sm text-gray-600">Comida, cáscaras, restos de jardinería. ¡Aprende a compostar y crear abono!</p>
+                            <span class="text-xs font-semibold text-green-500 mt-2 block">VER GUÍA ></span>
                         </div>
-                        <div class="card p-4 rounded-lg bg-blue-50 border border-blue-200">
-                            <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="box" class="w-5 h-5 mr-2"></i> Reciclables (Azul)</h4>
-                            <p class="text-sm text-gray-600">Papel, cartón, plástico (PET), vidrio y metales limpios. Evita el uso de plásticos de un solo uso.</p>
+                        <div class="card p-6 rounded-xl bg-blue-50 border border-blue-200 cursor-pointer hover:shadow-lg transition duration-200" onclick="showTab('edu-recyclables')">
+                            <h4 class="font-bold text-xl text-blue-700 flex items-center mb-2"><i data-lucide="box" class="w-6 h-6 mr-3"></i> Reciclables</h4>
+                            <p class="text-sm text-gray-600">Plástico (PET), papel, cartón, vidrio, metales. Cómo limpiar y preparar.</p>
+                            <span class="text-xs font-semibold text-blue-500 mt-2 block">VER GUÍA ></span>
                         </div>
-                        <div class="card p-4 rounded-lg bg-gray-50 border border-gray-200">
-                            <h4 class="font-semibold text-gray-700 flex items-center mb-2"><i data-lucide="trash-2" class="w-5 h-5 mr-2"></i> Descarte (Gris)</h4>
-                            <p class="text-sm text-gray-600">Artículos no reciclables ni orgánicos, como pañales y colillas de cigarro.</p>
+                        <div class="card p-6 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer hover:shadow-lg transition duration-200" onclick="showTab('edu-discard')">
+                            <h4 class="font-bold text-xl text-gray-700 flex items-center mb-2"><i data-lucide="trash-2" class="w-6 h-6 mr-3"></i> Descarte</h4>
+                            <p class="text-sm text-gray-600">Lo que no se recicla ni se composta. Reducir al mínimo es la meta.</p>
+                            <span class="text-xs font-semibold text-gray-500 mt-2 block">VER GUÍA ></span>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <button class="mt-4 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300" onclick="showMessage('Simulación de inicio de curso multimedia.')">
-                        <i data-lucide="book-open" class="w-4 h-4 inline mr-1"></i> Ver Curso de Compostaje Básico
+            <div id="edu-organics" class="tab-page hidden">
+                <button class="text-green-600 hover:text-green-800 mb-4 flex items-center" onclick="showTab('education')">
+                    <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Volver a Módulo Educativo
+                </button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">🍎 Orgánicos: Compostaje para Cochabamba</h2>
+                <div class="bg-white p-8 rounded-xl border border-green-200 space-y-6">
+                    <p class="text-lg text-gray-700">Aproximadamente el 60% de los residuos generados son **orgánicos**. Separarlos evita que contaminen K'ara K'ara y permite crear abono vital para la agricultura local.</p>
+                    <h3 class="text-xl font-semibold text-gray-800">¿Qué SÍ va? (El tesoro verde)</h3>
+                    <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                        <li>Restos de frutas y verduras (cáscaras, semillas, pulpa).</li>
+                        <li>Posos de café y bolsas de té (sin grapas).</li>
+                        <li>Cáscaras de huevo.</li>
+                        <li>Restos de pan, tortillas, cereales (en pequeñas cantidades).</li>
+                    </ul>
+                    <h3 class="text-xl font-semibold text-gray-800 pt-4">¿Qué NO va? (Riesgo de contaminación)</h3>
+                    <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1 text-red-600">
+                        <li>Carnes, huesos o grasas (atraen plagas y huelen mal al compostar).</li>
+                        <li>Lácteos o aceites.</li>
+                        <li>Cenizas, colillas o pañales.</li>
+                    </ul>
+                    <button class="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300" onclick="showMessage('Simulación de descarga de guía de compostaje.')">
+                        <i data-lucide="download" class="w-4 h-4 inline mr-1"></i> Descargar Guía Práctica de Compostaje
                     </button>
+                </div>
+            </div>
+
+            <div id="edu-recyclables" class="tab-page hidden">
+                <button class="text-blue-600 hover:text-blue-800 mb-4 flex items-center" onclick="showTab('education')">
+                    <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Volver a Módulo Educativo
+                </button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">♻️ Reciclables: Preparación y Valorización</h2>
+                <div class="bg-white p-8 rounded-xl border border-blue-200 space-y-6">
+                    <p class="text-lg text-gray-700">Para que los materiales puedan ser recuperados, deben estar **limpios y secos**. La contaminación por grasa o comida inutiliza el material.</p>
+                    <h3 class="text-xl font-semibold text-gray-800">Tipos de Reciclables Clave</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-4 border rounded-lg bg-blue-50">
+                            <h4 class="font-semibold text-blue-700">Plásticos (PET y HDPE)</h4>
+                            <p class="text-sm text-gray-600">Botellas de bebida, envases de shampoo. **Retira tapas y aplasta** para ahorrar espacio.</p>
+                        </div>
+                        <div class="p-4 border rounded-lg bg-blue-50">
+                            <h4 class="font-semibold text-blue-700">Papel y Cartón</h4>
+                            <p class="text-sm text-gray-600">Cajas, periódicos, hojas de oficina. **Evita papel sucio o encerado** (cajas de pizza con grasa).</p>
+                        </div>
+                    </div>
+                    <p class="text-sm italic text-red-500 pt-4">❌ **Importante:** Las bolsas de plástico de un solo uso y los envoltorios de snacks generalmente no son reciclables en los Puntos Verdes.</p>
+                </div>
+            </div>
+
+            <div id="edu-discard" class="tab-page hidden">
+                <button class="text-gray-600 hover:text-gray-800 mb-4 flex items-center" onclick="showTab('education')">
+                    <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> Volver a Módulo Educativo
+                </button>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">🗑️ Descarte: Residuos No Aprovechables</h2>
+                <div class="bg-white p-8 rounded-xl border border-gray-200 space-y-6">
+                    <p class="text-lg text-gray-700">Esta fracción debe ser minimizada. Incluye todo lo que no se puede compostar ni reciclar y está destinado al relleno sanitario de K'ara K'ara.</p>
+                    <h3 class="text-xl font-semibold text-gray-800">Ejemplos Comunes de Descarte</h3>
+                    <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
+                        <li>Pañales, toallas sanitarias y curitas.</li>
+                        <li>Colillas de cigarro.</li>
+                        <li>Cerámica, espejos o vidrios rotos que no sean de envase (peligroso).</li>
+                        <li>Papel contaminado con comida o aceite.</li>
+                        <li>Polvo, barrido y basura doméstica general.</li>
+                    </ul>
+                    <p class="text-base text-gray-700 pt-4">Para **Residuos Peligrosos** (baterías, focos, medicamentos caducados), consulta el punto de acopio municipal especializado más cercano, ¡nunca los tires a la basura común!</p>
                 </div>
             </div>
 
@@ -124,22 +182,15 @@
                         <p class="text-xl font-bold text-yellow-700">Tu Nivel Actual: <span class="text-yellow-800">Guerrero Ambiental I</span></p>
                         <i data-lucide="trophy" class="w-8 h-8 text-yellow-600"></i>
                     </div>
-
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Catálogo de Recompensas Simbólicas</h3>
                     <div class="space-y-4">
                         <div class="p-4 border rounded-lg flex items-center justify-between">
-                            <div>
-                                <p class="font-semibold">Bolsa de Abono Orgánico</p>
-                                <p class="text-sm text-gray-500">Canje por tu próximo proyecto de jardín.</p>
-                            </div>
+                            <div><p class="font-semibold">Bolsa de Abono Orgánico</p><p class="text-sm text-gray-500">Canje por tu próximo proyecto de jardín.</p></div>
                             <span class="text-lg font-bold text-green-600">2,000 Pts</span>
                             <button class="ml-4 bg-green-500 text-white py-1 px-3 rounded text-sm hover:bg-green-600" onclick="showMessage('Canje simulado. ¡Felicidades!')">Canjear</button>
                         </div>
                         <div class="p-4 border rounded-lg flex items-center justify-between">
-                            <div>
-                                <p class="font-semibold">Reconocimiento Digital Municipal</p>
-                                <p class="text-sm text-gray-500">Mención en redes sociales como Ciudadano Modelo.</p>
-                            </div>
+                            <div><p class="font-semibold">Reconocimiento Digital Municipal</p><p class="text-sm text-gray-500">Mención en redes sociales como Ciudadano Modelo.</p></div>
                             <span class="text-lg font-bold text-green-600">500 Pts</span>
                             <button class="ml-4 bg-gray-400 text-white py-1 px-3 rounded text-sm cursor-not-allowed">Canjeado</button>
                         </div>
@@ -151,7 +202,6 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Monitoreo Público y Trazabilidad</h2>
                 <div class="bg-white p-8 rounded-xl border border-gray-100">
                     <p class="text-lg text-gray-700 mb-6">La transparencia es clave. Consulta aquí los reportes automáticos y públicos sobre la gestión de residuos en Cochabamba, incluyendo volúmenes procesados y calidad del compost.</p>
-
                     <div class="space-y-4">
                         <div class="p-4 border rounded-lg bg-blue-50">
                             <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Reporte Trimestral Q3 - 2024</h4>
