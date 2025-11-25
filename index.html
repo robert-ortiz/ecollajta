@@ -178,23 +178,65 @@
             <div id="incentives" class="tab-page hidden">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Plan de Recompensas y Gamificación</h2>
                 <div class="bg-white p-8 rounded-xl border border-gray-100">
-                    <div class="mb-6 p-4 rounded-lg bg-yellow-50 border border-yellow-200 flex items-center justify-between">
-                        <p class="text-xl font-bold text-yellow-700">Tu Nivel Actual: <span class="text-yellow-800">Guerrero Ambiental I</span></p>
-                        <i data-lucide="trophy" class="w-8 h-8 text-yellow-600"></i>
+                    
+                    <div class="mb-6 p-6 rounded-xl bg-yellow-50 border border-yellow-200 grid grid-cols-2 gap-4 items-center">
+                        <div>
+                            <p class="text-sm font-medium text-gray-700">Puntos Acumulados:</p>
+                            <p id="user-points-display" class="text-4xl font-extrabold text-yellow-800">1,580</p> 
+                        </div>
+                        <div class="text-right">
+                            <div class="flex items-center justify-end space-x-2">
+                                <i data-lucide="trophy" class="w-6 h-6 text-yellow-600"></i>
+                                <p class="text-lg font-bold text-gray-700">Tu Nivel:</p>
+                            </div>
+                            <p id="user-level-display" class="text-2xl font-extrabold text-yellow-700">Eco-Activista II</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Catálogo de Recompensas Simbólicas</h3>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Catálogo de Recompensas</h3>
                     <div class="space-y-4">
-                        <div class="p-4 border rounded-lg flex items-center justify-between">
-                            <div><p class="font-semibold">Bolsa de Abono Orgánico</p><p class="text-sm text-gray-500">Canje por tu próximo proyecto de jardín.</p></div>
+                        <div class="p-4 border rounded-lg flex items-center justify-between bg-green-50">
+                            <div>
+                                <p class="font-semibold">Bolsa de Abono Orgánico (2Kg)</p>
+                                <p class="text-sm text-gray-500">Canje por tu próximo proyecto de jardín. Ayudas a cerrar el ciclo.</p>
+                            </div>
                             <span class="text-lg font-bold text-green-600">2,000 Pts</span>
-                            <button class="ml-4 bg-green-500 text-white py-1 px-3 rounded text-sm hover:bg-green-600" onclick="showMessage('Canje simulado. ¡Felicidades!')">Canjear</button>
+                            <button class="ml-4 bg-green-500 text-white py-1 px-3 rounded text-sm hover:bg-green-600" onclick="showMessage('Canje simulado. ¡Felicidades por tu abono!')">Canjear</button>
                         </div>
                         <div class="p-4 border rounded-lg flex items-center justify-between">
-                            <div><p class="font-semibold">Reconocimiento Digital Municipal</p><p class="text-sm text-gray-500">Mención en redes sociales como Ciudadano Modelo.</p></div>
+                            <div>
+                                <p class="font-semibold">Cupón de Descuento (Bs. 10)</p>
+                                <p class="text-sm text-gray-500">Válido en tiendas de productos ecológicos en Cocha.</p>
+                            </div>
+                            <span class="text-lg font-bold text-green-600">1,000 Pts</span>
+                            <button class="ml-4 bg-green-500 text-white py-1 px-3 rounded text-sm hover:bg-green-600" onclick="showMessage('Cupón generado: ECOCBA10. Válido por 30 días.')">Canjear</button>
+                        </div>
+                        <div class="p-4 border rounded-lg flex items-center justify-between bg-gray-50">
+                            <div>
+                                <p class="font-semibold">Reconocimiento Digital Municipal</p>
+                                <p class="text-sm text-gray-500">Mención en redes sociales como Ciudadano Modelo (Nivel 3+).</p>
+                            </div>
                             <span class="text-lg font-bold text-green-600">500 Pts</span>
                             <button class="ml-4 bg-gray-400 text-white py-1 px-3 rounded text-sm cursor-not-allowed">Canjeado</button>
                         </div>
                     </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-8 mb-4 border-b pb-2">Historial de Puntos</h3>
+                    <div class="overflow-x-auto shadow-sm rounded-lg border border-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actividad</th>
+                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Puntos</th>
+                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-history-body" class="bg-white divide-y divide-gray-200"> 
+                                </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 

@@ -33,6 +33,47 @@ const hybridPoints = [
     { name: "Kalo's RESTAURANTE", coords: [-17.402516, -66.156656], description: "Punto de recolección de aceite vegetal usado (reciclaje) y basurero zonal." } // NUEVO PUNTO
 ];
 
+// --- LÓGICA DE INCENTIVOS (AÑADIDO) ---
+const userIncentives = {
+    points: 1580,
+    level: "Eco-Activista II",
+    nextLevelPoints: 2000,
+    transactions: [
+        { date: "24/11/2025", type: "Reciclaje PET", points: "+150", status: "Completado" },
+        { date: "20/11/2025", type: "Canje: Bolsa Abono", points: "-500", status: "Canjeado" },
+        { date: "15/11/2025", type: "Orgánicos compostaje", points: "+200", status: "Completado" },
+        { date: "10/11/2025", type: "Reciclaje Cartón", points: "+100", status: "Completado" },
+    ]
+};
+
+// Función para actualizar la UI del incentivo (AÑADIDO)
+function updateIncentiveUI() {
+    // Referencias a elementos que deben estar en index.html
+    const pointsElement = document.getElementById('user-points-display');
+    const levelElement = document.getElementById('user-level-display');
+    const historyBody = document.getElementById('transaction-history-body');
+
+    if (pointsElement) pointsElement.textContent = userIncentives.points.toLocaleString();
+    if (levelElement) levelElement.textContent = userIncentives.level;
+    
+    if (historyBody) {
+        historyBody.innerHTML = ''; // Limpiar historial
+        
+        userIncentives.transactions.forEach(tx => {
+            const row = document.createElement('tr');
+            const pointsClass = tx.points.startsWith('+') ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold';
+            
+            row.innerHTML = `
+                <td class="py-2 px-4 whitespace-nowrap text-sm text-gray-500">${tx.date}</td>
+                <td class="py-2 px-4 whitespace-nowrap text-sm font-medium text-gray-900">${tx.type}</td>
+                <td class="py-2 px-4 whitespace-nowrap text-sm ${pointsClass}">${tx.points}</td>
+                <td class="py-2 px-4 whitespace-nowrap text-sm text-gray-500">${tx.status}</td>
+            `;
+            historyBody.appendChild(row);
+        });
+    }
+}
+
 
 // --- DEFINICIÓN DE ICONOS PERSONALIZADOS ---
 
@@ -74,7 +115,7 @@ function initMap() {
     // Añadir todos los tipos de marcadores
     addAcopioMarkers(mymap);
     addDiscardMarkers(mymap);
-    addHybridMarkers(mymap); // NUEVA LLAMADA
+    addHybridMarkers(mymap);
 }
 
 // Función para añadir Puntos de Acopio (Puntos Verdes - Icono Azul/Predeterminado)
@@ -131,7 +172,7 @@ function showTab(tabId) {
 
     document.querySelector(`.tab-button[data-tab="${activeTabId}"]`).classList.add('active');
     
-    // 3. Lógica para inicializar/refrescar el mapa
+    // 3. Lógica para inicializar/refrescar el mapa o actualizar incentivos
     if (tabId === 'dashboard') {
         if (!mapInitialized) {
             initMap();
@@ -141,6 +182,8 @@ function showTab(tabId) {
                 setTimeout(() => mymap.invalidateSize(), 100); 
             }
         }
+    } else if (tabId === 'incentives') { // <-- LLAMADA PARA CARGAR DATOS DE INCENTIVOS
+        updateIncentiveUI(); 
     }
     
     // Re-renderizar iconos
