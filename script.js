@@ -310,8 +310,11 @@ window.openDataPanel = function () {
     let hum = 63.0;
 
     if (tempEl && humEl) {
-        temp = (50 + Math.random() * 5).toFixed(1); // 50–55 °C
-        hum = (60 + Math.random() * 5).toFixed(1);  // 60–65 %
+        // --- LÍNEA MODIFICADA AQUÍ ---
+        temp = (20 + Math.random() * 10).toFixed(1); // Rango modificado: 20–30 °C
+        // --- FIN DE LA MODIFICACIÓN ---
+
+        hum = (60 + Math.random() * 5).toFixed(1);  // 60–65 % (Sin cambios)
         tempEl.textContent = `${temp} °C`;
         humEl.textContent = `${hum} %`;
     }
