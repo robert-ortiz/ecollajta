@@ -7,11 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    
     <link rel="stylesheet" href="styles.css">
-
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Chart.js para el gráfico del panel de datos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 </head>
 <body class="antialiased">
@@ -46,39 +47,54 @@
         </div>
 
         <div id="tab-content">
-            
             <div id="dashboard" class="tab-page">
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">Tu Impacto Ambiental</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="card bg-white p-6 rounded-xl border border-green-200"><div class="flex items-center justify-between"><p class="text-sm font-medium text-gray-500">Puntos Acumulados</p><i data-lucide="star" class="w-5 h-5 text-yellow-500"></i></div><p class="text-4xl font-extrabold text-gray-900 mt-2">1,580</p><p class="text-xs text-gray-400 mt-1">Gana más con cada separación correcta.</p></div>
-                    <div class="card bg-white p-6 rounded-xl border border-blue-200"><div class="flex items-center justify-between"><p class="text-sm font-medium text-gray-500">Orgánicos Compostados (Kg)</p><i data-lucide="recycle" class="w-5 h-5 text-blue-500"></i></div><p class="text-4xl font-extrabold text-gray-900 mt-2">45.7</p><p class="text-xs text-gray-400 mt-1">Residuos desviados de K’ara K’ara.</p></div>
-                    <div class="card bg-white p-6 rounded-xl border border-red-200"><div class="flex items-center justify-between"><p class="text-sm font-medium text-gray-500">Ahorro de CO2 (Kg)</p><i data-lucide="cloud-off" class="w-5 h-5 text-red-500"></i></div><p class="text-4xl font-extrabold text-gray-900 mt-2">12.3</p><p class="text-xs text-gray-400 mt-1">Gracias a la reducción de metano (CH4).</p></div>
+                    <div class="card bg-white p-6 rounded-xl border border-green-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-500">Puntos Acumulados</p>
+                            <i data-lucide="star" class="w-5 h-5 text-yellow-500"></i>
+                        </div>
+                        <p class="text-4xl font-extrabold text-gray-900 mt-2">1,580</p>
+                        <p class="text-xs text-gray-400 mt-1">Gana más con cada separación correcta.</p>
+                    </div>
+                    <div class="card bg-white p-6 rounded-xl border border-blue-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-500">Orgánicos Compostados (Kg)</p>
+                            <i data-lucide="recycle" class="w-5 h-5 text-blue-500"></i>
+                        </div>
+                        <p class="text-4xl font-extrabold text-gray-900 mt-2">45.7</p>
+                        <p class="text-xs text-gray-400 mt-1">Residuos desviados de K’ara K’ara.</p>
+                    </div>
+                    <div class="card bg-white p-6 rounded-xl border border-red-200">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium text-gray-500">Ahorro de CO2 (Kg)</p>
+                            <i data-lucide="cloud-off" class="w-5 h-5 text-red-500"></i>
+                        </div>
+                        <p class="text-4xl font-extrabold text-gray-900 mt-2">12.3</p>
+                        <p class="text-xs text-gray-400 mt-1">Gracias a la reducción de metano (CH4).</p>
+                    </div>
                 </div>
 
                 <div class="bg-white p-8 rounded-xl border border-gray-100">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Puntos de Recolección y Compostaje</h3>
-                    <div id="mapid" class="bg-gray-200 h-96 rounded-lg mb-4">
-                        </div>
+                    <div id="mapid" class="bg-gray-200 h-96 rounded-lg mb-4"></div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4 text-sm text-gray-600 mb-4">
                         <div class="flex items-center">
                             <i data-lucide="map-pin" class="w-5 h-5 text-blue-500 mr-2 fill-current"></i>
-                            <span>**Azul:** Punto Verde (Orgánicos/Reciclables)</span>
+                            <span>Azul: Punto Verde (Orgánicos/Reciclables)</span>
                         </div>
                         <div class="flex items-center">
                             <i data-lucide="map-pin" class="w-5 h-5 text-red-500 mr-2 fill-current"></i>
-                            <span>**Rojo:** Basurero Zonal (Solo Descarte)</span>
+                            <span>Rojo: Basurero Zonal (Solo Descarte de residuos)</span>
                         </div>
                         <div class="flex items-center">
                             <i data-lucide="map-pin" class="w-5 h-5 text-orange-500 mr-2 fill-current"></i>
-                            <span>**Naranja:** Punto Híbrido (Acopio + Descarte)</span>
+                            <span>Naranja: Punto Híbrido (Acopio + Descarte de residuos)</span>
                         </div>
                     </div>
-
-                    <button class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.01]" onclick="showMessage('Simulación de carga de mapa...')">
-                        <i data-lucide="map-pin" class="w-5 h-5 inline mr-2"></i> Encontrar mi Punto Más Cercano
-                    </button>
                 </div>
             </div>
 
@@ -89,17 +105,23 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="card p-6 rounded-xl bg-green-50 border border-green-200 cursor-pointer hover:shadow-lg transition duration-200" onclick="showTab('edu-organics')">
-                            <h4 class="font-bold text-xl text-green-700 flex items-center mb-2"><i data-lucide="apple" class="w-6 h-6 mr-3"></i> Orgánicos</h4>
+                            <h4 class="font-bold text-xl text-green-700 flex items-center mb-2">
+                                <i data-lucide="apple" class="w-6 h-6 mr-3"></i> Orgánicos
+                            </h4>
                             <p class="text-sm text-gray-600">Comida, cáscaras, restos de jardinería. ¡Aprende a compostar y crear abono!</p>
                             <span class="text-xs font-semibold text-green-500 mt-2 block">VER GUÍA ></span>
                         </div>
                         <div class="card p-6 rounded-xl bg-blue-50 border border-blue-200 cursor-pointer hover:shadow-lg transition duration-200" onclick="showTab('edu-recyclables')">
-                            <h4 class="font-bold text-xl text-blue-700 flex items-center mb-2"><i data-lucide="box" class="w-6 h-6 mr-3"></i> Reciclables</h4>
+                            <h4 class="font-bold text-xl text-blue-700 flex items-center mb-2">
+                                <i data-lucide="box" class="w-6 h-6 mr-3"></i> Reciclables
+                            </h4>
                             <p class="text-sm text-gray-600">Plástico (PET), papel, cartón, vidrio, metales. Cómo limpiar y preparar.</p>
                             <span class="text-xs font-semibold text-blue-500 mt-2 block">VER GUÍA ></span>
                         </div>
                         <div class="card p-6 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer hover:shadow-lg transition duration-200" onclick="showTab('edu-discard')">
-                            <h4 class="font-bold text-xl text-gray-700 flex items-center mb-2"><i data-lucide="trash-2" class="w-6 h-6 mr-3"></i> Descarte</h4>
+                            <h4 class="font-bold text-xl text-gray-700 flex items-center mb-2">
+                                <i data-lucide="trash-2" class="w-6 h-6 mr-3"></i> Descarte
+                            </h4>
                             <p class="text-sm text-gray-600">Lo que no se recicla ni se composta. Reducir al mínimo es la meta.</p>
                             <span class="text-xs font-semibold text-gray-500 mt-2 block">VER GUÍA ></span>
                         </div>
@@ -113,17 +135,17 @@
                 </button>
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">🍎 Orgánicos: Compostaje para Cochabamba</h2>
                 <div class="bg-white p-8 rounded-xl border border-green-200 space-y-6">
-                    <p class="text-lg text-gray-700">Aproximadamente el 60% de los residuos generados son **orgánicos**. Separarlos evita que contaminen K'ara K'ara y permite crear abono vital para la agricultura local.</p>
-                    <h3 class="text-xl font-semibold text-gray-800">¿Qué SÍ va? (El tesoro verde)</h3>
+                    <p class="text-lg text-gray-700">Aproximadamente el 60% de los residuos generados son orgánicos. Separarlos evita que contaminen K'ara K'ara y permite crear abono vital para la agricultura local.</p>
+                    <h3 class="text-xl font-semibold text-gray-800">¿Qué SÍ va?</h3>
                     <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
-                        <li>Restos de frutas y verduras (cáscaras, semillas, pulpa).</li>
-                        <li>Posos de café y bolsas de té (sin grapas).</li>
+                        <li>Restos de frutas y verduras.</li>
+                        <li>Posos de café y bolsas de té sin grapas.</li>
                         <li>Cáscaras de huevo.</li>
-                        <li>Restos de pan, tortillas, cereales (en pequeñas cantidades).</li>
+                        <li>Restos de pan, tortillas y cereales en pequeñas cantidades.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-gray-800 pt-4">¿Qué NO va? (Riesgo de contaminación)</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 pt-4">¿Qué NO va?</h3>
                     <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1 text-red-600">
-                        <li>Carnes, huesos o grasas (atraen plagas y huelen mal al compostar).</li>
+                        <li>Carnes, huesos o grasas.</li>
                         <li>Lácteos o aceites.</li>
                         <li>Cenizas, colillas o pañales.</li>
                     </ul>
@@ -139,20 +161,20 @@
                 </button>
                 <h2 class="text-3xl font-bold text-gray-800 mb-6">♻️ Reciclables: Preparación y Valorización</h2>
                 <div class="bg-white p-8 rounded-xl border border-blue-200 space-y-6">
-                    <p class="text-lg text-gray-700">Para que los materiales puedan ser recuperados, deben estar **limpios y secos**. La contaminación por grasa o comida inutiliza el material.</p>
+                    <p class="text-lg text-gray-700">Para que los materiales puedan ser recuperados, deben estar limpios y secos. La contaminación por grasa o comida inutiliza el material.</p>
                     <h3 class="text-xl font-semibold text-gray-800">Tipos de Reciclables Clave</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="p-4 border rounded-lg bg-blue-50">
                             <h4 class="font-semibold text-blue-700">Plásticos (PET y HDPE)</h4>
-                            <p class="text-sm text-gray-600">Botellas de bebida, envases de shampoo. **Retira tapas y aplasta** para ahorrar espacio.</p>
+                            <p class="text-sm text-gray-600">Botellas de bebida, envases de shampoo. Retira tapas y aplasta para ahorrar espacio.</p>
                         </div>
                         <div class="p-4 border rounded-lg bg-blue-50">
                             <h4 class="font-semibold text-blue-700">Papel y Cartón</h4>
-                            <p class="text-sm text-gray-600">Cajas, periódicos, hojas de oficina. **Evita papel sucio o encerado** (cajas de pizza con grasa).</p>
+                            <p class="text-sm text-gray-600">Cajas, periódicos, hojas de oficina. Evita papel sucio o encerado.</p>
                         </div>
                     </div>
-                    <p class="text-sm italic text-red-500 pt-4">❌ **Importante:** Las bolsas de plástico de un solo uso y los envoltorios de snacks generalmente no son reciclables en los Puntos Verdes.</p>
+                    <p class="text-sm italic text-red-500 pt-4">Las bolsas de plástico de un solo uso y los envoltorios de snacks generalmente no son reciclables en los Puntos Verdes.</p>
                 </div>
             </div>
 
@@ -167,11 +189,11 @@
                     <ul class="list-disc list-inside text-gray-600 ml-4 space-y-1">
                         <li>Pañales, toallas sanitarias y curitas.</li>
                         <li>Colillas de cigarro.</li>
-                        <li>Cerámica, espejos o vidrios rotos que no sean de envase (peligroso).</li>
+                        <li>Cerámica, espejos o vidrios rotos que no sean de envase.</li>
                         <li>Papel contaminado con comida o aceite.</li>
                         <li>Polvo, barrido y basura doméstica general.</li>
                     </ul>
-                    <p class="text-base text-gray-700 pt-4">Para **Residuos Peligrosos** (baterías, focos, medicamentos caducados), consulta el punto de acopio municipal especializado más cercano, ¡nunca los tires a la basura común!</p>
+                    <p class="text-base text-gray-700 pt-4">Para residuos peligrosos como baterías, focos y medicamentos caducados, consulta el punto de acopio municipal especializado más cercano.</p>
                 </div>
             </div>
 
@@ -226,14 +248,13 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
-                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actividad</th>
-                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Puntos</th>
-                                    <th scope="col" class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                    <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                                    <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actividad</th>
+                                    <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Puntos</th>
+                                    <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
                                 </tr>
                             </thead>
-                            <tbody id="transaction-history-body" class="bg-white divide-y divide-gray-200"> 
-                                </tbody>
+                            <tbody id="transaction-history-body" class="bg-white divide-y divide-gray-200"></tbody>
                         </table>
                     </div>
 
@@ -246,16 +267,20 @@
                     <p class="text-lg text-gray-700 mb-6">La transparencia es clave. Consulta aquí los reportes automáticos y públicos sobre la gestión de residuos en Cochabamba, incluyendo volúmenes procesados y calidad del compost.</p>
                     <div class="space-y-4">
                         <div class="p-4 border rounded-lg bg-blue-50">
-                            <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Reporte Trimestral Q3 - 2024</h4>
+                            <h4 class="font-semibold text-blue-700 flex items-center mb-2">
+                                <i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Reporte Trimestral Q3 - 2024
+                            </h4>
                             <p class="text-sm text-gray-600">Volumen total de orgánicos procesados: 120 Toneladas. Eficiencia del sistema: 85%.</p>
-                            <button class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium" onclick="showMessage('Simulación de descarga de PDF.')">
+                            <button class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium" onclick="downloadReporteTrimestral()">
                                 <i data-lucide="download" class="w-4 h-4 inline mr-1"></i> Descargar Informe Completo
                             </button>
                         </div>
                         <div class="p-4 border rounded-lg bg-blue-50">
-                            <h4 class="font-semibold text-blue-700 flex items-center mb-2"><i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Estado de la Planta de Compostaje Central</h4>
+                            <h4 class="font-semibold text-blue-700 flex items-center mb-2">
+                                <i data-lucide="file-text" class="w-5 h-5 mr-2"></i> Estado de la Planta de Compostaje Central
+                            </h4>
                             <p class="text-sm text-gray-600">Gráfico de calidad del compost (Temperatura, Humedad) en tiempo real (Simulado).</p>
-                            <button class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium" onclick="showMessage('Simulación de visualización de datos en tiempo real.')">
+                            <button class="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium" onclick="openDataPanel()">
                                 <i data-lucide="eye" class="w-4 h-4 inline mr-1"></i> Ver Panel de Datos
                             </button>
                         </div>
@@ -276,6 +301,41 @@
             <button onclick="closeModal()" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-200">
                 Aceptar
             </button>
+        </div>
+    </div>
+
+    <div id="data-panel-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50 transition-opacity duration-300">
+        <div class="bg-white p-6 rounded-xl shadow-2xl max-w-2xl w-full transform transition-all duration-300 scale-95 opacity-0">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <i data-lucide="activity" class="w-6 h-6 text-blue-600"></i>
+                    <h3 class="text-lg font-semibold text-gray-800">Panel de Datos – Planta de Compostaje</h3>
+                </div>
+                <button onclick="closeDataPanel()" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">Datos simulados en tiempo real de Temperatura y Humedad del compost.</p>
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+                <p class="text-xs text-gray-500 mb-2">Temperatura (°C) / Humedad (%) – últimas 24 horas (simulado)</p>
+                <div class="h-48 w-full bg-white rounded-md border border-dashed border-gray-300 flex items-center justify-center">
+                    <canvas id="compost-chart" class="w-full h-full"></canvas>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                <div class="p-3 rounded-lg bg-green-50 border border-green-200">
+                    <p class="text-xs text-gray-500">Temperatura actual</p>
+                    <p id="temp-actual" class="text-xl font-bold text-green-700">52 °C</p>
+                </div>
+                <div class="p-3 rounded-lg bg-blue-50 border border-blue-200">
+                    <p class="text-xs text-gray-500">Humedad actual</p>
+                    <p id="hum-actual" class="text-xl font-bold text-blue-700">63 %</p>
+                </div>
+                <div class="p-3 rounded-lg bg-yellow-50 border border-yellow-200">
+                    <p class="text-xs text-gray-500">Estado del Proceso</p>
+                    <p id="estado-proceso" class="text-sm font-semibold text-yellow-700">Zona óptima de compostaje</p>
+                </div>
+            </div>
         </div>
     </div>
 

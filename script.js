@@ -5,6 +5,10 @@ const messageModal = document.getElementById('message-modal');
 const modalContent = messageModal.querySelector('.bg-white');
 const modalText = document.getElementById('modal-text');
 
+// Modal extra para Panel de Datos
+const dataPanelModal = document.getElementById('data-panel-modal');
+const dataPanelContent = dataPanelModal ? dataPanelModal.querySelector('.bg-white') : null;
+
 // Variables para el Mapa Leaflet
 const COCHABAMBA_COORDS = [-17.3932, -66.1568]; 
 const DEFAULT_ZOOM = 13;
@@ -30,7 +34,7 @@ const discardPoints = [
 
 // PUNTOS HÍBRIDOS (Acopio + Descarte)
 const hybridPoints = [
-    { name: "Kalo's RESTAURANTE", coords: [-17.402516, -66.156656], description: "Punto de recolección de aceite vegetal usado (reciclaje) y basurero zonal." } // NUEVO PUNTO
+    { name: "Kalo's RESTAURANTE", coords: [-17.402516, -66.156656], description: "Punto de recolección de aceite vegetal usado (reciclaje) y basurero zonal." }
 ];
 
 // --- LÓGICA DE INCENTIVOS (AÑADIDO) ---
@@ -96,6 +100,9 @@ const OrangeIcon = new L.Icon({
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
 });
+
+// Variable global para el gráfico del panel
+let compostChart = null;
 
 // --- FUNCIONES DE MAPA ---
 
@@ -214,6 +221,153 @@ window.closeModal = function() {
         messageModal.classList.add('hidden');
         messageModal.classList.remove('flex');
     }, 300); 
+}
+
+// --- FUNCIONALIDAD MONITOREO PÚBLICO ---
+
+// Descarga real del reporte trimestral
+window.downloadReporteTrimestral = function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Título
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("Reporte Trimestral Q3 2024 - EcoCochabamba", 10, 20);
+
+    // Subtítulo
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text("Resumen de Gestión de Residuos Orgánicos - Julio a Septiembre 2024", 10, 30);
+
+    // Contenido
+    const lines = [
+        "",
+        "1. Resumen General",
+        "",
+        "Durante el tercer trimestre de 2024, el sistema de recolección diferenciada y compostaje",
+        "de EcoCochabamba procesó un total estimado de 120 toneladas de residuos orgánicos,",
+        "provenientes de hogares, mercados y restaurantes aliados.",
+        "",
+        "2. Indicadores Clave",
+        "",
+        "- Volumen total de orgánicos procesados: 120 t",
+        "- Eficiencia global del sistema: 85 %",
+        "- Punto de recolección con mayor aporte: Punto Verde Stadium (28 % del total)",
+        "- Reducción estimada de emisiones de CO2 equivalente: 32 t CO2e",
+        "",
+        "3. Calidad del Compost",
+        "",
+        "Las mediciones de la Planta de Compostaje Central muestran que la mayor parte de las pilas",
+        "se mantuvieron dentro de la zona óptima de compostaje, con temperaturas promedio entre",
+        "50 y 55 °C y humedades controladas entre 60 y 65 %. Estos rangos favorecen la actividad",
+        "microbiana y la higienización del material.",
+        "",
+        "4. Observaciones y Recomendaciones",
+        "",
+        "- Reforzar la educación en separación en origen en los barrios con menor participación.",
+        "- Incrementar la frecuencia de monitoreo en puntos híbridos para evitar mezclas no deseadas.",
+        "- Evaluar la ampliación de la capacidad de la Planta de Compostaje Central si la tendencia",
+        "  de crecimiento de volumen se mantiene durante Q4 2024.",
+        "",
+        "Este reporte tiene carácter informativo y busca brindar transparencia a la ciudadanía sobre",
+        "el funcionamiento del sistema de gestión de residuos orgánicos en Cochabamba."
+    ];
+
+    let x = 10;
+    let y = 40;
+    const lineHeight = 6;
+
+    doc.setFontSize(10);
+    lines.forEach(line => {
+        doc.text(line, x, y);
+        y += lineHeight;
+        // salto de página simple si nos acercamos al final
+        if (y > 280) {
+            doc.addPage();
+            y = 20;
+        }
+    });
+
+    // Disparar descarga
+    doc.save("Reporte_Trimestral_Q3_2024.pdf");
+};
+
+
+// Abrir Panel de Datos en modal propio
+window.openDataPanel = function () {
+    if (!dataPanelModal || !dataPanelContent) return;
+
+    dataPanelModal.classList.remove('hidden');
+    dataPanelModal.classList.add('flex');
+    dataPanelContent.classList.remove('opacity-0', 'scale-95');
+    dataPanelContent.classList.add('opacity-100', 'scale-100');
+
+    const tempEl = document.getElementById('temp-actual');
+    const humEl = document.getElementById('hum-actual');
+
+    let temp = 52.0;
+    let hum = 63.0;
+
+    if (tempEl && humEl) {
+        temp = (50 + Math.random() * 5).toFixed(1); // 50–55 °C
+        hum = (60 + Math.random() * 5).toFixed(1);  // 60–65 %
+        tempEl.textContent = `${temp} °C`;
+        humEl.textContent = `${hum} %`;
+    }
+
+    // Crear o actualizar el gráfico sencillo de barras
+    const canvas = document.getElementById('compost-chart');
+    if (canvas && window.Chart) {
+        const ctx = canvas.getContext('2d');
+        const dataValues = [Number(temp), Number(hum)];
+
+        if (compostChart) {
+            compostChart.data.datasets[0].data = dataValues;
+            compostChart.update();
+        } else {
+            compostChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Temperatura (°C)', 'Humedad (%)'],
+                    datasets: [{
+                        label: 'Valores actuales',
+                        data: dataValues,
+                        backgroundColor: ['rgba(34,197,94,0.4)', 'rgba(59,130,246,0.4)'],
+                        borderColor: ['rgba(34,197,94,1)', 'rgba(59,130,246,1)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+    }
+};
+
+// Cerrar Panel de Datos
+window.closeDataPanel = function () {
+    if (!dataPanelModal || !dataPanelContent) return;
+
+    dataPanelContent.classList.remove('opacity-100', 'scale-100');
+    dataPanelContent.classList.add('opacity-0', 'scale-95');
+
+    setTimeout(() => {
+        dataPanelModal.classList.add('hidden');
+        dataPanelModal.classList.remove('flex');
+    }, 300);
 }
 
 // Inicialización
